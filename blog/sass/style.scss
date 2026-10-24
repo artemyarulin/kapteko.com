@@ -1,0 +1,179 @@
+// Site additions to static/tufte.css.
+:root { color-scheme: light; --page-background: #fffff8; --page-text: #111; --inline-code-background: #f1f0e8; --inline-code-border: #d9d7ca; --inline-code-text: #683d1b; }
+html[data-theme="dark"] { color-scheme: dark; --page-background: #151515; --page-text: #ddd; --inline-code-background: #2a2926; --inline-code-border: #4c473e; --inline-code-text: #efc396; }
+body { background-color: var(--page-background); color: var(--page-text); }
+[hidden] { display: none !important; }
+a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+.site-header, .site-footer { width: 90%; }
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #8885;
+  font-size: 1.2rem;
+}
+.site-name { font-size: 1.4rem; font-weight: bold; text-decoration: none; }
+.site-header nav { display: flex; align-items: center; flex-wrap: wrap; gap: 1.25rem; }
+.site-header nav a[aria-current] { font-weight: bold; }
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; padding: 0; border: 0; border-radius: 50%; background: transparent; color: inherit; cursor: pointer; }
+.theme-toggle:hover { background: #8882; }
+.theme-toggle svg { width: 1.2rem; height: 1.2rem; }
+.theme-icon-light, html[data-theme="dark"] .theme-icon-dark { display: none; }
+html[data-theme="dark"] .theme-icon-light { display: block; }
+main { min-height: 55vh; }
+article { padding: 2rem 0 3rem; }
+h1 { margin-top: 2rem; }
+.article-header, .prose > h2, .prose > h3, .prose > h4 { width: 55%; }
+h1, h2, h3, h4 { text-wrap: balance; }
+.prose { overflow-wrap: anywhere; }
+.prose::after { content: ""; display: block; clear: both; }
+
+// Inline code gets its own surface, including each line when a long span wraps.
+.prose :not(pre) > code:not(.code-map-code) {
+  padding: 0.08em 0.3em;
+  border: 1px solid var(--inline-code-border);
+  border-radius: 0.25em;
+  background: var(--inline-code-background);
+  color: var(--inline-code-text);
+  font-size: 0.8em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+// Zola puts the background on pre; upstream Tufte sizes the nested code instead.
+.prose > pre, .code-map-source > pre { width: 55%; box-sizing: border-box; padding: 1.2rem; overflow-x: auto; border-radius: 4px; }
+.prose > pre > code, .code-map-source > pre > code { width: auto; margin: 0; overflow: visible; font-size: 1rem; overflow-wrap: normal; }
+.code-map-source > p { width: 55%; }
+.giallo-l { display: inline-block; min-height: 1lh; width: 100%; }
+.prose > table { display: block; overflow-x: auto; overflow-wrap: normal; border-collapse: collapse; font-size: 1.15rem; line-height: 1.5; }
+th, td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #8885; text-align: left; }
+.prose > figure.fullwidth > figcaption { float: none; max-width: 100%; margin: 0.75rem 0 0; }
+.prose > .capacity-chart { width: 90%; margin: 2rem 0; }
+.capacity-chart picture { display: block; }
+.capacity-chart img { display: block; }
+.capacity-chart .chart-dark, html[data-theme="dark"] .capacity-chart .chart-light { display: none; }
+html[data-theme="dark"] .capacity-chart .chart-dark { display: block; }
+// Keep the timeline zoom legible at tablet widths, too.
+@media (max-width: 1024px) {
+  #memory-progress img { max-width: 470px; margin-inline: auto; }
+}
+.prose .footnotes { width: 55%; border-top: 1px solid #8885; }
+.footnotes > ol { width: auto; }
+.footnotes p { font-size: 1.1rem; line-height: 1.5; }
+
+// Numeric footnotes keep their numbers; named notes get a star prefix.
+.sidenote::before { content: attr(data-number) " "; }
+.marginnote::before { content: "✦ "; }
+.sidenote, .marginnote {
+  .note-paragraph { display: block; margin-bottom: 0.8em; }
+  .note-paragraph:first-of-type { display: inline; }
+  .note-paragraph + .note-paragraph { margin-top: 0.8em; }
+  .note-paragraph:last-child { margin-bottom: 0; }
+  code { font-size: 0.9em; }
+  &:focus-visible { outline: 1px solid currentColor; outline-offset: 6px; }
+}
+
+@media (min-width: 761px) {
+  // A taller preceding note must finish before the next paragraph note starts.
+  .has-margin-note { clear: right; }
+}
+
+.post-list { width: 55%; list-style: none; padding: 0; }
+.post-list li { padding: 1.5rem 0; border-bottom: 1px solid #8885; }
+.post-list h2 { margin: 0 0 0.75rem; font-size: 1.8rem; }
+.post-list p { margin: 0; font-size: 1.2rem; line-height: 1.5; }
+.article-navigation { width: 55%; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #8885; font-size: 1.15rem; }
+.site-footer { padding: 1.5rem 0 2rem; border-top: 1px solid #8885; }
+.site-footer p { margin: 0; font-size: 1.1rem; }
+.skip-link { position: absolute; left: -10000px; }
+.skip-link:focus { position: fixed; left: 1rem; top: 1rem; padding: 0.5rem 1rem; background: Canvas; color: CanvasText; z-index: 1; }
+
+// Progressive enhancement: narrow screens and print keep the Markdown blocks.
+.code-map { display: none; }
+@media (min-width: 1100px) {
+  .code-map-source[data-enhanced] { display: none; }
+  .code-map {
+    display: block;
+    clear: both;
+    width: 90%;
+    margin: 2rem 0;
+    border: 1px solid #8885;
+    border-radius: 8px;
+    overflow: hidden;
+    font: 0.9rem/1.5 system-ui, sans-serif;
+    --map-accent: #8b510b;
+  }
+  html[data-theme="dark"] .code-map { --map-accent: #f9e2af; }
+  .code-map-choices { display: flex; gap: 0.5rem; padding: 1rem 1.2rem; }
+  .code-map-choices button {
+    padding: 0.35rem 0.85rem;
+    border: 1px solid #8886;
+    border-radius: 4px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+  .code-map-choices button.is-active { color: var(--map-accent); border-color: currentColor; background: #c8902415; }
+  .code-map-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: #8885; border-top: 1px solid #8885; }
+  .code-map-panel { min-width: 0; background: #1e1e2e; color: #cdd6f4; }
+  .code-map-stage { padding: 0.7rem 1rem; border-bottom: 1px solid #ffffff18; color: #bac2de; font-size: 0.8rem; letter-spacing: 0.03em; }
+  .code-map-listing { padding: 0.8rem 0 1rem; overflow-x: auto; }
+  .code-map-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0.4rem 0.8rem 0.4rem 0.5rem;
+    border: 0;
+    border-left: 3px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    font: inherit;
+  }
+  button.code-map-line { cursor: pointer; }
+  .code-map-line::before { content: attr(data-line); flex: 0 0 1.3rem; text-align: right; color: #a6adc8; font: 0.7rem/1.6 monospace; }
+  .code-map-line code { display: block; flex: 1; min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.85rem; line-height: 1.6; }
+  .code-map-line.is-active { background: #f9e2af18; border-left-color: #f9e2af; }
+  .code-map-line:focus-visible { outline: 2px solid #f9e2af; outline-offset: -2px; }
+}
+
+@media (max-width: 760px) {
+  .site-header, .site-footer, .article-header, .article-navigation, .post-list,
+  .prose > h2, .prose > h3, .prose > h4, .prose > pre, .prose .footnotes,
+  .code-map-source > pre, .code-map-source > p { width: 100%; }
+  .site-header { align-items: flex-start; flex-direction: column; gap: 0.75rem; }
+  h1 { font-size: 2.6rem; }
+  .prose > figure.fullwidth { max-width: 100%; }
+  .prose > .capacity-chart { width: 100%; }
+  .sidenote, .marginnote {
+    display: block;
+    float: none;
+    clear: none;
+    position: static;
+    box-sizing: border-box;
+    width: 100%;
+    margin: -0.25rem 0 1.4rem;
+    padding: 0.75rem 1rem;
+    border-left: 2px solid #8888;
+    background: #8881;
+    &::before { display: block; position: static; margin-bottom: 0.4rem; font: inherit; font-size: 0.95rem; font-weight: bold; }
+  }
+  .sidenote::before { content: "Note " attr(data-number); }
+  .marginnote::before { content: "✦ Note"; }
+}
+
+@media print {
+  .code-map { display: none; }
+  .code-map-source[data-enhanced] { display: block; }
+  .site-header, .site-footer, .article-navigation, .skip-link { display: none; }
+  .sidenote, .marginnote { display: block; }
+}

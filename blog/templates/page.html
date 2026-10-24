@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
+{% block description %}{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}{% endblock description %}
+
+{% block content %}
+<article>
+  <header class="article-header">
+    <h1>{{ page.title }}</h1>
+  </header>
+  <section class="prose">{{ page.content | safe }}</section>
+  {% if page.path != '/about_me/' %}
+  <nav class="article-navigation" aria-label="Article navigation">
+    <a href="/">← All articles</a>
+  </nav>
+  {% endif %}
+</article>
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="/sidenotes.js" defer></script>
+{% endblock extra_scripts %}
