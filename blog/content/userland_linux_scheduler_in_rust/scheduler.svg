@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 20 520 520" role="img" aria-labelledby="scheduler-title scheduler-description">
+  <title id="scheduler-title">One CPU shared by the kernel, Task 1 and Task 2</title>
+  <desc id="scheduler-description">
+    The CPU sits at the center of three sectors. Each task has its context
+    in its inner band and its code in its outer band. A shaded sector with an
+    accented border marks the one sector currently executing. The kernel's
+    inner band represents working state schematically, not one universal kernel context. The
+    timer counts from three to one before the kernel saves the current
+    task context and loads the other task context.
+  </desc>
+  <g class="sector" data-sector="kernel" data-angle="0">
+    <path/>
+    <path/>
+    <text class="name" x="280" y="81">Kernel</text>
+    <text data-state x="280" y="107">Waiting</text>
+    <text x="280" y="163">Kernel state</text>
+    <text data-context x="280" y="185">Waiting</text>
+  </g>
+  <g class="sector active" data-sector="p1" data-angle="240">
+    <path/>
+    <path/>
+    <text class="name" x="112" y="389">Task 1</text>
+    <text data-state x="118" y="416">Active</text>
+    <text x="184" y="331">Context</text>
+    <text data-context x="190" y="353">Active</text>
+  </g>
+  <g class="sector" data-sector="p2" data-angle="120">
+    <path/>
+    <path/>
+    <text class="name" x="448" y="389">Task 2</text>
+    <text data-state x="442" y="416">Waiting</text>
+    <text x="376" y="331">Context</text>
+    <text data-context x="370" y="353">Waiting</text>
+  </g>
+  <g data-cpu aria-label="CPU and timer">
+    <circle cx="280" cy="280" r="66"/>
+    <text class="name" x="280" y="273">CPU</text>
+    <text class="timer" data-timer-label x="280" y="300">Timer <tspan data-timer>3</tspan></text>
+  </g>
+</svg>

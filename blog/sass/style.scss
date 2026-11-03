@@ -27,7 +27,9 @@ main { min-height: 55vh; }
 article { padding: 2rem 0 3rem; }
 h1 { margin-top: 2rem; }
 .article-header, .prose > h2, .prose > h3, .prose > h4 { width: 55%; }
+.article-date { display: block; margin-top: -0.75rem; font-size: 1rem; line-height: 1.5; opacity: 0.6; }
 h1, h2, h3, h4 { text-wrap: balance; }
+h1, h2, h3, h4, h5, h6 { font-style: normal; }
 .prose { overflow-wrap: anywhere; }
 .prose::after { content: ""; display: block; clear: both; }
 
@@ -56,9 +58,9 @@ th, td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #8885; text-align: lef
 .capacity-chart img { display: block; }
 .capacity-chart .chart-dark, html[data-theme="dark"] .capacity-chart .chart-light { display: none; }
 html[data-theme="dark"] .capacity-chart .chart-dark { display: block; }
-// Keep the timeline zoom legible at tablet widths, too.
+// Keep mobile chart layouts legible at tablet widths, too.
 @media (max-width: 1024px) {
-  #memory-progress img { max-width: 470px; margin-inline: auto; }
+  #memory-progress img, #million-tasks img { max-width: 470px; margin-inline: auto; }
 }
 .prose .footnotes { width: 55%; border-top: 1px solid #8885; }
 .footnotes > ol { width: auto; }
@@ -82,7 +84,7 @@ html[data-theme="dark"] .capacity-chart .chart-dark { display: block; }
 }
 
 .post-list { width: 55%; list-style: none; padding: 0; }
-.post-list li { padding: 1.5rem 0; border-bottom: 1px solid #8885; }
+.post-list li { padding: 1.5rem 0; }
 .post-list h2 { margin: 0 0 0.75rem; font-size: 1.8rem; }
 .post-list p { margin: 0; font-size: 1.2rem; line-height: 1.5; }
 .article-navigation { width: 55%; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #8885; font-size: 1.15rem; }

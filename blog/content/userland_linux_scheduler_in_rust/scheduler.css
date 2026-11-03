@@ -1,0 +1,68 @@
+#scheduler-animation {
+  --scheduler-line: #99998f;
+  --scheduler-active: #8b510b;
+  --scheduler-active-fill: #f5e7cc;
+  width: 55%;
+  max-width: none;
+  margin: 1.25rem 0 1.5rem;
+  font-family: Arial, sans-serif;
+}
+
+html[data-theme="dark"] #scheduler-animation {
+  --scheduler-line: #686868;
+  --scheduler-active: #f3c67a;
+  --scheduler-active-fill: #352b1d;
+}
+
+#scheduler-animation svg {
+  display: block;
+  width: 350px;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+#scheduler-animation text {
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: 400;
+  fill: currentColor;
+  text-anchor: middle;
+}
+
+#scheduler-animation path,
+#scheduler-animation circle {
+  fill: var(--page-background, #fff);
+  stroke: var(--scheduler-line);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+#scheduler-animation .sector.active path {
+  fill: var(--scheduler-active-fill);
+  stroke: var(--scheduler-active);
+  stroke-width: 2;
+}
+
+#scheduler-animation .sector.active text {
+  fill: var(--scheduler-active);
+}
+
+#scheduler-animation [data-context] {
+  font-size: 20px;
+}
+
+#scheduler-animation .timer {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 760px) {
+  #scheduler-animation {
+    width: 100%;
+    margin-block: 1rem;
+  }
+
+  #scheduler-animation svg {
+    width: min(100%, 280px, max(240px, 45svh));
+  }
+}

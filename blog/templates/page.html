@@ -7,6 +7,9 @@
 <article>
   <header class="article-header">
     <h1>{{ page.title }}</h1>
+    {% if page.date %}
+    <time class="article-date" datetime="{{ page.date | date(format='%Y-%m-%d') }}">{{ page.date | date(format="%b %d, %Y") }}</time>
+    {% endif %}
   </header>
   <section class="prose">{{ page.content | safe }}</section>
   {% if page.path != '/about_me/' %}

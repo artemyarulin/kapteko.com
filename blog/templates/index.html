@@ -4,7 +4,7 @@
 <article class="article-index">
 <h1>{{ section.title }}</h1>
 <ul class="post-list">
-  {% for post in section.pages %}
+  {% for post in section.pages | reverse %}
   {% if post.path != '/about_me/' %}
   <li>
       <h2><a href="{{ post.path | safe }}">{{ post.title }}</a></h2>

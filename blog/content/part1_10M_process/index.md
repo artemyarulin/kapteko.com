@@ -39,7 +39,7 @@ I have a hunch that it might be a little difficult to run 10 million Codex, so l
 3. `std::thread::park()` - ah, the perfection, look at that, `sleep` is 5 letters, while `park` is only 4 - 20% less RAM. For a simple Rust `fn main() { park(); }`, the produced binary is 300KB; to run it, the OS needs to load part of it into RAM, initialise kernel structs related to the new process, and then our app itself might allocate RAM for its own needs. In our example, total RAM usage is 1.73MB.
 
 Can we do better? First, let's remind ourselves how an OS works:
-```sh
+```console
 $ codex "How OS runs my binaries?"
 >Cloning https://github.com/torvalds/linux
 >Enumerating objects: 11853083, done.
@@ -135,7 +135,7 @@ Minecraft/Roblox/Terraria/KVM/gVisor/Docker/cat litter boxes - share a common tr
 
 We can't run Codex without any isolation. OK, a process provides isolation, but it's rarely enough. Now let's go deeper into available sandbox solutions and see if I manage to pull off the cat's litter box analogy.
 
-### Virtual machines
+## Virtual machines
 
 VM - essentially Minecraft in Minecraft. Here is the beautiful visualisation of how Firecracker works <https://youtu.be/-BP7DhHTU-I?t=27>. We bring another kernel and our guests run there. Having such a setup provides the biggest isolation possible (hardware enforced), but if you didn't have enough resources with one kernel, then bringing the second one is not going to save much. 
 
@@ -154,7 +154,7 @@ Fun fact - gVisor started as a fork of Terraria; there are still some signs of i
 ```
 [^gvisor] How does it work? gVisor uses `systrap` - when you run your app under gVisor, any `syscall` from the app will be intercepted and processed by gVisor. Essentially they wrote a userland kernel in Go which is a damn achievement! gVisor provides a virtual file system, network and everything else for each running sandbox. All syscalls are guaranteed to be captured, so `rm -rf /` will have no effect on the host itself. It's an amazing project and recently [got donated to CNCF](https://gvisor.dev/blog/2026/10/02/gvisor-cncf/) which I hope will increase its adoption. You run it like:
 
-```sh
+```console
 # runsc is the gVisor binary
 $ sudo runsc do echo 'World'
 >World
@@ -169,7 +169,7 @@ Unix has supported running multiple processes from different users for a long ti
 
 When my process runs inside a container, then it still runs on the same machine, same kernel, same syscalls; the only difference is that it runs inside an illusion - the kernel gives it its own view of the file system (`ls /` will return files somewhere in `/var/lib/docker/overlay2/<container_id>`), its own virtual devices and network plus a few checks around, but it's still just a process sending syscalls to the same kernel. For our use case there are hardly any savings, plus in terms of isolation it's rarely trusted by the industry, so the tradeoff is not worth it for our case.
 
-### SFI
+## SFI
 
 What was the antonym for the word `security` during the Trojan War? Historical records are scarce, but very likely it was `άλογο` which roughly translates to `taking an untrusted package from the outside, bringing it home and leaving it with all the permissions`. That is exactly what is happening when you run random untrusted code INSIDE your own process.
 

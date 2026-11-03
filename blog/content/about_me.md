@@ -12,7 +12,7 @@ I am Artem, living in sunny Finland, writing code at [Rivet](https://rivet.dev) 
 - Email: [spam@kapteko.com](mailto:spam@kapteko.com)
 
 What else to add? Here are some random facts:
-```sh
+```console
 $ grep --text --only-matching --max-count 5 fact /dev/random
 fact
 fact

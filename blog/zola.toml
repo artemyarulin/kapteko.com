@@ -11,7 +11,6 @@ feed_filenames = ["atom.xml", "rss.xml"]
 [markdown]
 bottom_footnotes = true
 external_links_target_blank = true
-insert_anchor_links = "heading"
 smart_punctuation = true
 
 [markdown.highlighting]
