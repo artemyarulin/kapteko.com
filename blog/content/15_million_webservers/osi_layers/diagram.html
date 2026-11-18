@@ -1,0 +1,45 @@
+<!-- Keep this fragment free of blank lines: Zola inserts it before Markdown parsing. -->
+<figure id="osi-layers" aria-label="Network layer encapsulation">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"><strong>HTTP</strong><span>Application · L7</span></th>
+        <th scope="col"><strong>TCP</strong><span>Transport · L4</span></th>
+        <th scope="col"><strong>IP</strong><span>Network · L3</span></th>
+        <th scope="col"><strong>Ethernet</strong><span>Data link · L2</span></th>
+        <th scope="col"><strong>Physical</strong><span>L1</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="osi-data"><strong class="osi-message">GET /</strong></td>
+        <td class="osi-payload" data-payload="tcp"><strong>Payload</strong></td>
+        <td class="osi-payload" data-payload="ip" rowspan="6"><strong>Payload</strong></td>
+        <td class="osi-payload" data-payload="ethernet" rowspan="10"><strong>Payload</strong></td>
+        <td class="osi-physical" rowspan="14" aria-label="Electricity and poop"><span aria-hidden="true">⚡<br>💩</span></td>
+      </tr>
+      <tr>
+        <td class="osi-empty" rowspan="13"></td>
+        <td class="osi-field osi-tcp-field"><strong>Src port</strong><span>50123</span></td>
+      </tr>
+      <tr><td class="osi-field osi-tcp-field"><strong>Dst port</strong><span>80</span></td></tr>
+      <tr><td class="osi-field osi-tcp-field"><strong>Seq</strong><span>1001</span></td></tr>
+      <tr><td class="osi-field osi-tcp-field"><strong>ACK</strong><span>7001</span></td></tr>
+      <tr><td class="osi-field osi-tcp-field"><strong>Flags</strong><span>ACK</span></td></tr>
+      <tr>
+        <td class="osi-empty" rowspan="8"></td>
+        <td class="osi-field osi-ip-field"><strong>Src IP</strong><span>192.0.<wbr>2.10</span></td>
+      </tr>
+      <tr><td class="osi-field osi-ip-field"><strong>Dst IP</strong><span>198.51.<wbr>100.20</span></td></tr>
+      <tr><td class="osi-field osi-ip-field"><strong>TTL</strong><span>64</span></td></tr>
+      <tr><td class="osi-field osi-ip-field"><strong>Protocol</strong><span>6 (TCP)</span></td></tr>
+      <tr>
+        <td class="osi-empty" rowspan="4"></td>
+        <td class="osi-field osi-ethernet-field"><strong>Dst MAC</strong><span>02:00:00:<wbr>00:00:fe</span></td>
+      </tr>
+      <tr><td class="osi-field osi-ethernet-field"><strong>Src MAC</strong><span>02:00:00:<wbr>00:00:01</span></td></tr>
+      <tr><td class="osi-field osi-ethernet-field"><strong>EtherType</strong><span>0x0800 (IPv4)</span></td></tr>
+      <tr><td class="osi-fcs"><strong>FCS</strong><span>CRC</span></td></tr>
+    </tbody>
+  </table>
+</figure>
