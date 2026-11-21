@@ -46,7 +46,17 @@
     {% block content %}{% endblock content %}
   </main>
   <footer class="site-footer">
-    <p><a href="/">Articles</a> · <a href="/about_me/">About me</a></p>
+    <p>
+      <a href="/">Articles</a> · <a href="/about_me/">About me</a>
+      {% if config.generate_feeds %}
+      · <a class="rss-link" href="{{ get_url(path='rss.xml', trailing_slash=false) }}" type="application/rss+xml" aria-label="RSS feed" title="RSS feed">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/>
+          <circle cx="5" cy="19" r="1.7" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      {% endif %}
+    </p>
   </footer>
   {% block extra_scripts %}{% endblock extra_scripts %}
 </body>

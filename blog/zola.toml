@@ -1,6 +1,7 @@
 base_url = "https://kapteko.com"
 title = "kapteko"
 description = "kapteko"
+author = "spam@kapteko.com (Artem Yarulin)"
 default_language = "en"
 compile_sass = true
 build_search_index = false

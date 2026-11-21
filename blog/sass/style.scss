@@ -91,6 +91,8 @@ html[data-theme="dark"] .capacity-chart .chart-dark { display: block; }
 .article-navigation { width: 55%; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #8885; font-size: 1.15rem; }
 .site-footer { padding: 1.5rem 0 2rem; border-top: 1px solid #8885; }
 .site-footer p { margin: 0; font-size: 1.1rem; }
+.rss-link { display: inline-flex; align-items: center; justify-content: center; width: 1.6rem; height: 1.6rem; vertical-align: middle; }
+.rss-link svg { width: 1.1rem; height: 1.1rem; }
 .skip-link { position: absolute; left: -10000px; }
 .skip-link:focus { position: fixed; left: 1rem; top: 1rem; padding: 0.5rem 1rem; background: Canvas; color: CanvasText; z-index: 1; }
 
