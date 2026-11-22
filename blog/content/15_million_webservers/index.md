@@ -273,7 +273,7 @@ Why is this so exciting? It means that by moving the network stack to userland, 
 
 ## References
 
-- <https://github.com/artemyarulin/AI15M/tree/main/poc/ten-million-webservers> source
+- <https://github.com/artemyarulin/AI10M/tree/main/poc/ten-million-webservers> source
 - <https://medium.com/beyond-localhost/how-we-handle-15M-websocket-connections-on-a-single-server-8917c3952f59> great overview of DPDK
 - <https://doc.dpdk.org/guides/index.html> DPDK main documentation site
 - <https://docs.kernel.org/networking/af_xdp.html> AF_XDP overview
